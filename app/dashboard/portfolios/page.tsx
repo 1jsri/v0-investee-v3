@@ -47,6 +47,10 @@ interface Holding {
   investment_amount: number
   shares: number
   portfolio_id: string
+  currentPrice?: number
+  change?: number
+  changePercent?: number
+  marketValue?: number
 }
 
 interface QuickStats {
@@ -93,11 +97,36 @@ export default function PortfoliosPage() {
           user_id: "user1",
           created_at: "2024-01-15",
           updated_at: "2024-12-10",
-          holdings: [],
+          holdings: [
+            {
+              id: "h1",
+              asset_ticker: "AAPL",
+              asset_name: "Apple Inc.",
+              investment_amount: 15000,
+              shares: 77,
+              portfolio_id: "1",
+            },
+            {
+              id: "h2",
+              asset_ticker: "MSFT",
+              asset_name: "Microsoft Corporation",
+              investment_amount: 12000,
+              shares: 28,
+              portfolio_id: "1",
+            },
+            {
+              id: "h3",
+              asset_ticker: "JNJ",
+              asset_name: "Johnson & Johnson",
+              investment_amount: 10000,
+              shares: 62,
+              portfolio_id: "1",
+            },
+          ],
           totalValue: 45250,
           monthlyIncome: 187.5,
           ytdPerformance: 8.3,
-          holdingsCount: 12,
+          holdingsCount: 3,
           averageYield: 2.8,
         },
         {
@@ -108,11 +137,28 @@ export default function PortfoliosPage() {
           user_id: "user1",
           created_at: "2024-02-20",
           updated_at: "2024-12-08",
-          holdings: [],
+          holdings: [
+            {
+              id: "h4",
+              asset_ticker: "SCHD",
+              asset_name: "Schwab US Dividend Equity ETF",
+              investment_amount: 20000,
+              shares: 250,
+              portfolio_id: "2",
+            },
+            {
+              id: "h5",
+              asset_ticker: "VYM",
+              asset_name: "Vanguard High Dividend Yield ETF",
+              investment_amount: 8900,
+              shares: 75,
+              portfolio_id: "2",
+            },
+          ],
           totalValue: 28900,
           monthlyIncome: 245.8,
           ytdPerformance: 5.7,
-          holdingsCount: 8,
+          holdingsCount: 2,
           averageYield: 4.2,
         },
         {
@@ -127,12 +173,23 @@ export default function PortfoliosPage() {
           totalValue: 67800,
           monthlyIncome: 298.4,
           ytdPerformance: 12.1,
-          holdingsCount: 15,
+          holdingsCount: 0,
           averageYield: 3.1,
         },
       ]
 
-      setPortfolios(mockPortfolios)
+      const portfoliosWithRealData = await Promise.all(
+        mockPortfolios.map(async (portfolio) => {
+          if (portfolio.holdings.length > 0) {
+            console.log(`[v0] Fetching real data for ${portfolio.name}`)
+            return await fetchPortfolioRealData(portfolio)
+          }
+          return portfolio
+        }),
+      )
+
+      setPortfolios(portfoliosWithRealData)
+      console.log("[v0] Loaded portfolios with real data:", portfoliosWithRealData)
     } catch (error) {
       console.error("Error loading portfolios:", error)
     } finally {
@@ -246,9 +303,80 @@ export default function PortfoliosPage() {
     try {
       const res = await fetch(`/api/search-assets?q=${searchQuery}`)
       const data = await res.json()
-      setSearchResults(data)
+
+      // Handle both old and new API response formats
+      const results = data.result || data || []
+      setSearchResults(results)
+
+      console.log("[v0] Search results:", results)
     } catch (error) {
       console.error("Error searching assets:", error)
+      setSearchResults([])
+    }
+  }
+
+  const fetchPortfolioRealData = async (portfolio: Portfolio) => {
+    if (!portfolio.holdings || portfolio.holdings.length === 0) {
+      return portfolio
+    }
+
+    try {
+      // Get real quotes for all holdings
+      const holdingsWithRealData = await Promise.all(
+        portfolio.holdings.map(async (holding) => {
+          try {
+            const res = await fetch(`/api/asset-quote?symbol=${holding.asset_ticker}`)
+            const quoteData = await res.json()
+
+            return {
+              ...holding,
+              currentPrice: quoteData.price || 0,
+              change: quoteData.change || 0,
+              changePercent: quoteData.changesPercentage || 0,
+              marketValue: (quoteData.price || 0) * holding.shares,
+            }
+          } catch (error) {
+            console.error(`Error fetching quote for ${holding.asset_ticker}:`, error)
+            return holding
+          }
+        }),
+      )
+
+      // Calculate real portfolio metrics
+      const totalValue = holdingsWithRealData.reduce((sum, h) => sum + (h.marketValue || h.investment_amount), 0)
+
+      // Get dividend data for yield calculation
+      const symbols = portfolio.holdings.map((h) => h.asset_ticker).join(",")
+      const divRes = await fetch(`/api/dividend-data?symbols=${symbols}`)
+      const divData = await divRes.json()
+
+      let monthlyIncome = 0
+      let totalYield = 0
+
+      if (divData.data) {
+        divData.data.forEach((div: any) => {
+          const holding = holdingsWithRealData.find((h) => h.asset_ticker === div.symbol)
+          if (holding && div.annualDividend > 0) {
+            const annualIncome = div.annualDividend * holding.shares
+            monthlyIncome += annualIncome / 12
+            totalYield += div.dividendYield || 0
+          }
+        })
+      }
+
+      const averageYield = divData.data?.length > 0 ? totalYield / divData.data.length : 0
+
+      return {
+        ...portfolio,
+        holdings: holdingsWithRealData,
+        totalValue,
+        monthlyIncome,
+        averageYield,
+        holdingsCount: holdingsWithRealData.length,
+      }
+    } catch (error) {
+      console.error("Error fetching real portfolio data:", error)
+      return portfolio
     }
   }
 
@@ -574,13 +702,20 @@ export default function PortfoliosPage() {
                     <div key={result.symbol} className="flex justify-between items-center p-2 hover:bg-gray-50">
                       <div>
                         <span className="font-semibold">{result.symbol}</span>
-                        <span className="ml-2 text-gray-600">{result.name}</span>
+                        <span className="ml-2 text-gray-600">{result.description || result.name}</span>
+                        <div className="text-xs text-gray-500">
+                          {result.exchange} • {result.currency || "USD"}
+                        </div>
                       </div>
                       <Button
                         onClick={() => {
-                          // Add asset to portfolio
-                          alert(`Added ${result.symbol} to ${selectedPortfolio.name}`)
+                          console.log(`[v0] Adding ${result.symbol} to ${selectedPortfolio.name}`)
+                          alert(
+                            `Added ${result.symbol} (${result.description || result.name}) to ${selectedPortfolio.name}`,
+                          )
                           setShowAddAssets(false)
+                          setSearchQuery("")
+                          setSearchResults([])
                         }}
                         size="sm"
                         className="bg-green-500 hover:bg-green-600"

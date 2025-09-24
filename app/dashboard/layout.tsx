@@ -1,5 +1,5 @@
 import type React from "react"
-import { TopNavigation } from "@/components/dashboard/TopNavigation"
+import { UnifiedNavigation } from "@/components/unified-navigation"
 import { FloatingChatButton } from "@/components/floating-chat-button"
 
 interface Profile {
@@ -22,7 +22,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <TopNavigation user={user} profile={profile} />
+      <UnifiedNavigation user={user} profile={profile} />
       <main className="w-full">{children}</main>
       <FloatingChatButton />
     </div>

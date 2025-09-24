@@ -64,7 +64,7 @@ export default function RootLayout({
     <html lang="en" className={dmSans.variable}>
       <body className="font-sans antialiased min-h-screen bg-background flex flex-col">
         <ErrorBoundary>
-          <Navigation />
+          {window.location.pathname !== "/dashboard" && <Navigation />}
           <main className="flex-1">{children}</main>
           <ComplianceFooter />
         </ErrorBoundary>

@@ -8,15 +8,17 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { UsageAnalyticsDashboard } from "@/components/usage-analytics-dashboard"
-import { SubscriptionUpgradeModal } from "@/components/subscription-upgrade-modal"
-import { User, Bell, Shield, Download, Trash2, Crown } from "lucide-react"
+import { User, Bell, Shield, Download, Trash2 } from "lucide-react"
+import { createClient } from "@/lib/supabase/client"
+import { useRouter } from "next/navigation"
 
 export default function SettingsPage() {
   const [user, setUser] = useState<any>(null)
   const [profile, setProfile] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false)
+  const router = useRouter()
   const [settings, setSettings] = useState({
     emailNotifications: true,
     dividendAlerts: true,
@@ -73,6 +75,39 @@ export default function SettingsPage() {
     URL.revokeObjectURL(url)
   }
 
+  const handleDeleteAccount = async () => {
+    // Step 1: Show native browser confirmation dialog
+    const confirmed = window.confirm("Are you sure you want to delete your account? This action is irreversible.")
+
+    if (!confirmed) {
+      return
+    }
+
+    setIsDeletingAccount(true)
+
+    try {
+      // Step 2: Call Supabase RPC function to delete user
+      const supabase = createClient()
+      const { error } = await supabase.rpc("delete_user")
+
+      if (error) {
+        // Step 4: Log error to console for debugging
+        console.error("Account deletion failed:", error)
+        alert("Failed to delete account. Please try again or contact support.")
+        return
+      }
+
+      // Step 3: Redirect to homepage on success
+      router.push("/")
+    } catch (error) {
+      // Step 4: Log any unexpected errors
+      console.error("Unexpected error during account deletion:", error)
+      alert("An unexpected error occurred. Please try again or contact support.")
+    } finally {
+      setIsDeletingAccount(false)
+    }
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -118,10 +153,10 @@ export default function SettingsPage() {
                         <Badge variant="outline" className="capitalize">
                           {profile?.subscription_tier}
                         </Badge>
-                        <Button size="sm" onClick={() => setShowUpgradeModal(true)}>
+                        {/* <Button size="sm" onClick={() => setShowUpgradeModal(true)}>
                           <Crown className="h-4 w-4 mr-1" />
                           Upgrade
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </div>
@@ -197,11 +232,21 @@ export default function SettingsPage() {
             </TabsContent>
 
             <TabsContent value="subscription" className="space-y-6">
-              <UsageAnalyticsDashboard
+              {/* <UsageAnalyticsDashboard
                 profile={profile}
                 usageData={usageData}
                 onUpgrade={() => setShowUpgradeModal(true)}
-              />
+              /> */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Subscription Management</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Subscription management is temporarily unavailable. All features remain accessible.
+                  </p>
+                </CardContent>
+              </Card>
             </TabsContent>
 
             <TabsContent value="privacy" className="space-y-6">
@@ -238,9 +283,11 @@ export default function SettingsPage() {
                         <Button
                           variant="outline"
                           className="text-red-600 border-red-200 hover:bg-red-50 bg-transparent"
+                          onClick={handleDeleteAccount}
+                          disabled={isDeletingAccount}
                         >
                           <Trash2 className="h-4 w-4 mr-2" />
-                          Delete Account
+                          {isDeletingAccount ? "Deleting..." : "Delete Account"}
                         </Button>
                       </div>
                     </div>
@@ -252,13 +299,13 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      <SubscriptionUpgradeModal
+      {/* <SubscriptionUpgradeModal
         isOpen={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
         currentTier={profile?.subscription_tier || "free"}
         usageData={usageData}
         triggerReason="trial_ending"
-      />
+      /> */}
     </div>
   )
 }

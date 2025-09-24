@@ -1,12 +1,10 @@
-import { neon } from "@neondatabase/serverless"
-import { drizzle } from "drizzle-orm/neon-http"
-import * as schema from "./schema"
+import { createClient } from "@supabase/supabase-js"
 
 // Cache the connection
-let cached = (global as any).db
+let cached = (global as any).supabase
 
 if (!cached) {
-  cached = (global as any).db = { conn: null, promise: null }
+  cached = (global as any).supabase = { conn: null, promise: null }
 }
 
 export async function getDb() {
@@ -15,27 +13,22 @@ export async function getDb() {
   }
 
   if (!cached.promise) {
-    const databaseUrl =
-      process.env.NEON_NEON_DATABASE_URL ||
-      process.env.NEON_POSTGRES_URL ||
-      process.env.DATABASE_URL ||
-      process.env.POSTGRES_URL
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-    if (!databaseUrl) {
+    if (!supabaseUrl || !supabaseKey) {
       console.error(
-        "[v0] No database URL found. Available Neon env vars:",
-        Object.keys(process.env).filter((key) => key.includes("NEON") || key.includes("POSTGRES")),
+        "[v0] Supabase configuration missing. Required: NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY",
       )
       return null
     }
 
-    console.log("[v0] Connecting to Neon database...")
+    console.log("[v0] Connecting to Supabase database...")
     try {
-      const sql = neon(databaseUrl)
-      cached.promise = drizzle(sql, { schema })
+      cached.promise = createClient(supabaseUrl, supabaseKey)
       cached.conn = cached.promise
     } catch (error) {
-      console.error("[v0] Database connection failed:", error)
+      console.error("[v0] Supabase connection failed:", error)
       return null
     }
   }

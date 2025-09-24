@@ -87,7 +87,11 @@ export function PricingSection() {
   const [isYearly, setIsYearly] = useState(false)
 
   const handlePlanSelect = async (planName: string, priceId: string | null) => {
-    if (!priceId) {
+    router.push(`/auth/signin?plan=${planName.toLowerCase()}`)
+    return
+
+    // Original Stripe checkout code commented out
+    /* if (!priceId) {
       router.push(`/auth/signin?plan=${planName.toLowerCase()}`)
       return
     }
@@ -121,7 +125,7 @@ export function PricingSection() {
       router.push(`/auth/signin?plan=${planName.toLowerCase()}&payment_error=true`)
     } finally {
       setLoading(null)
-    }
+    } */
   }
 
   return (
@@ -225,11 +229,14 @@ export function PricingSection() {
                       : "bg-white text-black border-2 border-black hover:bg-black hover:text-white"
                   } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  {isLoading ? "Processing..." : plan.cta}
+                  {isLoading ? "Processing..." : plan.name === "Free" ? plan.cta : "Start Free"}
                 </Button>
 
                 {plan.name === "Free" && (
                   <p className="text-xs text-gray-500 text-center mt-3">No credit card required</p>
+                )}
+                {plan.name !== "Free" && (
+                  <p className="text-xs text-gray-500 text-center mt-3">Currently free access - billing coming soon</p>
                 )}
               </Card>
             )

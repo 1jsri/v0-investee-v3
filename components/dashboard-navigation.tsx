@@ -129,9 +129,8 @@ export function DashboardNavigation({ user, profile }: DashboardNavigationProps)
                       : "bg-gradient-to-r from-slate-100 to-gray-100 text-slate-800 border-slate-200 shadow-sm"
                 }`}
               >
-                <span className="hidden sm:inline">{profile?.subscription_tier}</span>
-                <span className="sm:hidden">{profile?.subscription_tier?.charAt(0).toUpperCase()}</span>
-                {isOnTrial && <span className="hidden sm:inline"> Trial: {trialDaysLeft}d left</span>}
+                <span className="hidden sm:inline">{profile?.subscription_tier || "free"}</span>
+                <span className="sm:hidden">{(profile?.subscription_tier || "free")?.charAt(0).toUpperCase()}</span>
               </Badge>
 
               <Button
