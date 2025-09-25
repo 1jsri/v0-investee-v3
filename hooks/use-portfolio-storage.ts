@@ -13,6 +13,11 @@ export function usePortfolioStorage() {
 
   // Load portfolios from localStorage on mount
   useEffect(() => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") {
+      setIsLoading(false)
+      return
+    }
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
       const currentStored = localStorage.getItem(CURRENT_PORTFOLIO_KEY)
@@ -39,6 +44,8 @@ export function usePortfolioStorage() {
 
   // Save portfolios to localStorage
   const saveToStorage = useCallback((updatedPortfolios: Portfolio[]) => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return
+
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPortfolios))
       setPortfolios(updatedPortfolios)
@@ -49,6 +56,8 @@ export function usePortfolioStorage() {
 
   // Save current portfolio ID
   const saveCurrentPortfolio = useCallback((portfolio: Portfolio | null) => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return
+
     try {
       if (portfolio) {
         localStorage.setItem(CURRENT_PORTFOLIO_KEY, JSON.stringify(portfolio.id))

@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -82,6 +83,13 @@ export function HeroSection() {
     }).format(amount)
   }
 
+  const scrollToCalculator = () => {
+    if (typeof document !== "undefined") {
+      const calculatorSection = document.getElementById("calculator-preview")
+      calculatorSection?.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   const totalMonthly = totalAnnualDividend / 12
 
   console.log("[v0] Current state - calculations:", calculations, "totalAnnual:", totalAnnualDividend)
@@ -156,10 +164,7 @@ export function HeroSection() {
                 variant="outline"
                 size="lg"
                 className="border-2 border-black text-black bg-white hover:bg-gray-50 text-lg sm:text-xl px-8 sm:px-10 py-6 sm:py-8 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-                onClick={() => {
-                  const calculatorSection = document.getElementById("calculator-preview")
-                  calculatorSection?.scrollIntoView({ behavior: "smooth" })
-                }}
+                onClick={scrollToCalculator}
               >
                 <Calculator className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
                 Try Calculator Below

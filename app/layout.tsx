@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { DM_Sans } from "next/font/google"
 import { ErrorBoundary } from "@/components/error-boundary"
-import Navigation from "@/components/Navigation"
+import { ConditionalNavigation } from "@/components/conditional-navigation"
 import { ComplianceFooter } from "@/components/compliance-footer"
 import "./globals.css"
 
@@ -64,7 +64,7 @@ export default function RootLayout({
     <html lang="en" className={dmSans.variable}>
       <body className="font-sans antialiased min-h-screen bg-background flex flex-col">
         <ErrorBoundary>
-          {window.location.pathname !== "/dashboard" && <Navigation />}
+          <ConditionalNavigation />
           <main className="flex-1">{children}</main>
           <ComplianceFooter />
         </ErrorBoundary>
