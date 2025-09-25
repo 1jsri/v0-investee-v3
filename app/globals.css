@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Establishing unified color system and design tokens */
+@layer base {
+  :root {
+    --background: 248 250 252; /* slate-50 - consistent light background */
+    --foreground: 15 23 42; /* slate-900 - primary text */
+    --card: 255 255 255; /* white - all content cards */
+    --card-foreground: 15 23 42; /* slate-900 */
+    --popover: 255 255 255; /* white */
+    --popover-foreground: 15 23 42; /* slate-900 */
+    --primary: 15 23 42; /* slate-900 - primary brand color */
+    --primary-foreground: 248 250 252; /* slate-50 */
+    --secondary: 241 245 249; /* slate-100 - subtle backgrounds */
+    --secondary-foreground: 15 23 42; /* slate-900 */
+    --muted: 241 245 249; /* slate-100 */
+    --muted-foreground: 100 116 139; /* slate-500 */
+    --accent: 241 245 249; /* slate-100 */
+    --accent-foreground: 15 23 42; /* slate-900 */
+    --destructive: 239 68 68; /* red-500 */
+    --destructive-foreground: 248 250 252; /* slate-50 */
+    --border: 226 232 240; /* slate-200 - consistent borders */
+    --input: 226 232 240; /* slate-200 */
+    --ring: 15 23 42; /* slate-900 */
+    --radius: 0.5rem;
+  }
+}
+
+/* Ensuring consistent modal overlay behavior */
+@layer components {
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 50;
+  }
+
+  .modal-content {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 51;
+  }
+}

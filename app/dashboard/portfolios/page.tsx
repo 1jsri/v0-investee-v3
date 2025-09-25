@@ -13,7 +13,6 @@ import {
   Edit3,
   Trash2,
   PieChart,
-  TrendingUp,
   DollarSign,
   Calendar,
   Eye,
@@ -403,53 +402,53 @@ export default function PortfoliosPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20 lg:pb-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <Card className="p-4 bg-gradient-to-br from-white to-blue-50 border border-slate-200">
+          <Card className="p-4 bg-card border-border shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <DollarSign className="h-5 w-5 text-white" />
+              <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
+                <DollarSign className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total Value</p>
-                <p className="text-lg font-bold text-slate-900">${quickStats.totalPortfolioValue.toLocaleString()}</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Total Value</p>
+                <p className="text-lg font-bold text-foreground">${quickStats.totalPortfolioValue.toLocaleString()}</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-br from-white to-green-50 border border-slate-200">
+          <Card className="p-4 bg-card border-border shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+              <div className="h-10 w-10 bg-green-600 rounded-lg flex items-center justify-center">
                 <Calendar className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Monthly Income</p>
-                <p className="text-lg font-bold text-slate-900">${quickStats.combinedMonthlyIncome.toFixed(2)}</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Monthly Income</p>
+                <p className="text-lg font-bold text-foreground">${quickStats.combinedMonthlyIncome.toFixed(2)}</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-br from-white to-purple-50 border border-slate-200">
+          <Card className="p-4 bg-card border-border shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="h-10 w-10 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Target className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Average Yield</p>
-                <p className="text-lg font-bold text-slate-900">{quickStats.averageYield.toFixed(1)}%</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Average Yield</p>
+                <p className="text-lg font-bold text-foreground">{quickStats.averageYield.toFixed(1)}%</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-br from-white to-amber-50 border border-slate-200">
+          <Card className="p-4 bg-card border-border shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
+              <div className="h-10 w-10 bg-amber-600 rounded-lg flex items-center justify-center">
                 <BarChart3 className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total Holdings</p>
-                <p className="text-lg font-bold text-slate-900">{quickStats.totalHoldings}</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Total Holdings</p>
+                <p className="text-lg font-bold text-foreground">{quickStats.totalHoldings}</p>
               </div>
             </div>
           </Card>
@@ -457,18 +456,18 @@ export default function PortfoliosPage() {
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">Your Portfolios</h1>
-            <p className="text-slate-600">Manage your dividend-focused investment portfolios</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Your Portfolios</h1>
+            <p className="text-muted-foreground">Manage your dividend-focused investment portfolios</p>
           </div>
 
           <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-slate-900 hover:bg-slate-800">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Plus className="h-4 w-4 mr-2" />
                 Create Portfolio
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md bg-card border-border">
               <DialogHeader>
                 <DialogTitle>Create New Portfolio</DialogTitle>
               </DialogHeader>
@@ -532,7 +531,7 @@ export default function PortfoliosPage() {
             {portfolios.map((portfolio) => (
               <Card
                 key={portfolio.id}
-                className="p-6 hover:shadow-lg transition-all duration-200 border border-slate-200 bg-white"
+                className="p-6 hover:shadow-lg transition-all duration-200 border-border bg-card"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3 flex-1">
@@ -542,7 +541,7 @@ export default function PortfoliosPage() {
                       <PieChart className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-slate-900 truncate text-lg">{portfolio.name}</h3>
+                      <h3 className="font-semibold text-foreground truncate text-lg">{portfolio.name}</h3>
                       <Badge
                         variant="outline"
                         className={`text-xs font-medium capitalize ${getStrategyBadge(portfolio.strategy)}`}
@@ -550,7 +549,7 @@ export default function PortfoliosPage() {
                         {portfolio.strategy}
                       </Badge>
                       {portfolio.description && (
-                        <p className="text-xs text-slate-500 truncate mt-1">{portfolio.description}</p>
+                        <p className="text-xs text-muted-foreground truncate mt-1">{portfolio.description}</p>
                       )}
                     </div>
                   </div>
@@ -588,12 +587,12 @@ export default function PortfoliosPage() {
 
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-600 flex items-center gap-1">
+                    <span className="text-sm text-muted-foreground flex items-center gap-1">
                       <DollarSign className="h-3 w-3" />
                       Total Value
                     </span>
                     <div className="text-right">
-                      <span className="font-semibold text-slate-900">${portfolio.totalValue.toLocaleString()}</span>
+                      <span className="font-semibold text-foreground">${portfolio.totalValue.toLocaleString()}</span>
                       <div className="h-4 w-16 bg-blue-50 rounded mt-1 flex items-center justify-center">
                         <div className="text-xs text-blue-600">📈</div>
                       </div>
@@ -601,7 +600,7 @@ export default function PortfoliosPage() {
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-600 flex items-center gap-1">
+                    <span className="text-sm text-muted-foreground flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       Monthly Income
                     </span>
@@ -609,10 +608,7 @@ export default function PortfoliosPage() {
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-600 flex items-center gap-1">
-                      <TrendingUp className="h-3 w-3" />
-                      YTD Return
-                    </span>
+                    <span className="text-sm text-muted-foreground">YTD Return</span>
                     <Badge variant={portfolio.ytdPerformance >= 0 ? "default" : "destructive"} className="text-xs">
                       {portfolio.ytdPerformance >= 0 ? "+" : ""}
                       {portfolio.ytdPerformance.toFixed(1)}%
@@ -620,14 +616,16 @@ export default function PortfoliosPage() {
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-600">Holdings</span>
-                    <span className="font-medium text-slate-900">{portfolio.holdingsCount} assets</span>
+                    <span className="text-sm text-muted-foreground">Holdings</span>
+                    <span className="font-medium text-foreground">{portfolio.holdingsCount} assets</span>
                   </div>
                 </div>
 
                 <div className="border-t pt-4">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Asset Allocation</span>
+                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      Asset Allocation
+                    </span>
                     <div className="h-8 w-8 bg-slate-100 rounded-full flex items-center justify-center">
                       <PieChart className="h-4 w-4 text-slate-400" />
                     </div>
@@ -655,16 +653,20 @@ export default function PortfoliosPage() {
             ))}
           </div>
         ) : (
-          <Card className="p-12 text-center border-2 border-dashed border-slate-300">
-            <div className="h-20 w-20 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <PieChart className="h-10 w-10 text-blue-600" />
+          <Card className="p-12 text-center border-2 border-dashed border-border bg-card">
+            <div className="h-20 w-20 bg-secondary rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <PieChart className="h-10 w-10 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold text-slate-900 mb-3">Start Building Your Portfolio</h3>
-            <p className="text-slate-600 mb-6 max-w-md mx-auto">
+            <h3 className="text-xl font-semibold text-foreground mb-3">Start Building Your Portfolio</h3>
+            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
               Create your first dividend-focused portfolio to track income, analyze performance, and optimize your
               investments.
             </p>
-            <Button onClick={() => setIsCreateModalOpen(true)} size="lg">
+            <Button
+              onClick={() => setIsCreateModalOpen(true)}
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
               <Plus className="h-5 w-5 mr-2" />
               Create Your First Portfolio
             </Button>
@@ -672,8 +674,8 @@ export default function PortfoliosPage() {
         )}
 
         {showAddAssets && selectedPortfolio && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+            <div className="bg-card rounded-lg p-6 w-full max-w-2xl border-border shadow-lg">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">Add Assets to {selectedPortfolio.name}</h2>
                 <button onClick={() => setShowAddAssets(false)}>
@@ -735,8 +737,8 @@ export default function PortfoliosPage() {
         )}
 
         {showDetails && selectedPortfolio && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[80vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+            <div className="bg-card rounded-lg p-6 w-full max-w-4xl max-h-[80vh] overflow-y-auto border-border shadow-lg">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">{selectedPortfolio.name} Details</h2>
                 <button onClick={() => setShowDetails(false)}>

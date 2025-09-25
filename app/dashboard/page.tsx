@@ -66,26 +66,27 @@ export default function DashboardOverview() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 pb-20 lg:pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Main Content Area */}
-          <div className="lg:col-span-9">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 mb-6 sm:mb-8">
-              <Card className="p-3 sm:p-6 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/50 border border-slate-200/60 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 group">
-                <div className="flex items-center justify-between mb-2 sm:mb-4">
-                  <div className="h-8 w-8 sm:h-12 sm:w-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <DollarSign className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+          <div className="lg:col-span-9 space-y-6">
+            {/* Metrics Cards Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <Card className="p-4 bg-card border-border shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="h-10 w-10 bg-primary rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <DollarSign className="h-5 w-5 text-primary-foreground" />
                   </div>
-                  <div className="h-6 w-12 sm:h-8 sm:w-16 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                    <div className="text-xs text-blue-600 font-medium">📈</div>
+                  <div className="h-6 w-12 bg-secondary rounded-full flex items-center justify-center">
+                    <div className="text-xs text-muted-foreground font-medium">📈</div>
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Total Value</p>
-                  <p className="text-lg sm:text-2xl font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
-                    $29,959
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+                    Total Value
                   </p>
+                  <p className="text-xl font-bold text-foreground">$29,959</p>
                   <p className="text-xs text-green-600 font-medium mt-1 flex items-center gap-1">
                     <TrendingUp className="h-3 w-3" />
                     +$1,247 (4.3%)
@@ -93,227 +94,215 @@ export default function DashboardOverview() {
                 </div>
               </Card>
 
-              <Card className="p-3 sm:p-6 bg-gradient-to-br from-white via-emerald-50/30 to-green-50/50 border border-slate-200/60 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 group">
-                <div className="flex items-center justify-between mb-2 sm:mb-4">
-                  <div className="h-8 w-8 sm:h-12 sm:w-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <Calendar className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+              <Card className="p-4 bg-card border-border shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="h-10 w-10 bg-green-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <Calendar className="h-5 w-5 text-white" />
                   </div>
-                  <Badge
-                    variant="outline"
-                    className="text-emerald-600 border-emerald-200 bg-emerald-50 font-medium text-xs group-hover:bg-emerald-100 transition-colors"
-                  >
+                  <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 font-medium text-xs">
                     +12.5%
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Monthly Income</p>
-                  <p className="text-lg sm:text-2xl font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
-                    $487
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+                    Monthly Income
                   </p>
-                  <p className="text-xs text-slate-500 mt-1">Next: $156 on Dec 15</p>
+                  <p className="text-xl font-bold text-foreground">$487</p>
+                  <p className="text-xs text-muted-foreground mt-1">Next: $156 on Dec 15</p>
                 </div>
               </Card>
 
-              <Card className="p-3 sm:p-6 bg-gradient-to-br from-white via-purple-50/30 to-violet-50/50 border border-slate-200/60 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 group">
-                <div className="flex items-center justify-between mb-2 sm:mb-4">
-                  <div className="h-8 w-8 sm:h-12 sm:w-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <TrendingUp className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+              <Card className="p-4 bg-card border-border shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <TrendingUp className="h-5 w-5 text-white" />
                   </div>
-                  <Badge
-                    variant="outline"
-                    className="text-purple-600 border-purple-200 bg-purple-50 font-medium text-xs group-hover:bg-purple-100 transition-colors"
-                  >
+                  <Badge variant="outline" className="text-blue-600 border-blue-200 bg-blue-50 font-medium text-xs">
                     1.94%
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Annual Income</p>
-                  <p className="text-lg sm:text-2xl font-bold text-slate-900 group-hover:text-purple-900 transition-colors">
-                    $5,844
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+                    Annual Income
                   </p>
-                  <p className="text-xs text-slate-500 mt-1">Avg yield: 1.94%</p>
+                  <p className="text-xl font-bold text-foreground">$5,844</p>
+                  <p className="text-xs text-muted-foreground mt-1">Avg yield: 1.94%</p>
                 </div>
               </Card>
 
-              <Card className="p-3 sm:p-6 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/50 border border-slate-200/60 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 group">
-                <div className="flex items-center justify-between mb-2 sm:mb-4">
-                  <div className="h-8 w-8 sm:h-12 sm:w-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <PieChart className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+              <Card className="p-4 bg-card border-border shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="h-10 w-10 bg-amber-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <PieChart className="h-5 w-5 text-white" />
                   </div>
-                  <Badge
-                    variant="outline"
-                    className="text-amber-600 border-amber-200 bg-amber-50 font-medium text-xs group-hover:bg-amber-100 transition-colors"
-                  >
+                  <Badge variant="outline" className="text-amber-600 border-amber-200 bg-amber-50 font-medium text-xs">
                     3 assets
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Diversification</p>
-                  <p className="text-lg sm:text-2xl font-bold text-slate-900 group-hover:text-amber-900 transition-colors">
-                    Good
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+                    Diversification
                   </p>
-                  <p className="text-xs text-slate-500 mt-1">3 sectors covered</p>
+                  <p className="text-xl font-bold text-foreground">Good</p>
+                  <p className="text-xs text-muted-foreground mt-1">3 sectors covered</p>
                 </div>
               </Card>
 
-              <Card className="p-3 sm:p-6 bg-gradient-to-br from-white via-slate-50/30 to-slate-50/50 border border-slate-200/60 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 group">
-                <div className="flex items-center justify-between mb-2 sm:mb-4">
-                  <div className="h-8 w-8 sm:h-12 sm:w-12 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <Target className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+              <Card className="p-4 bg-card border-border shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="h-10 w-10 bg-muted-foreground rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <Target className="h-5 w-5 text-white" />
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-slate-600 border-slate-200 bg-slate-50 font-medium text-xs capitalize group-hover:bg-slate-100 transition-colors"
+                    className="text-muted-foreground border-border bg-secondary font-medium text-xs capitalize"
                   >
                     casual
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Plan Usage</p>
-                  <p className="text-lg sm:text-2xl font-bold text-slate-900 group-hover:text-slate-900 transition-colors">
-                    3/25
-                  </p>
-                  <p className="text-xs text-slate-500 mt-1">Assets tracked</p>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Plan Usage</p>
+                  <p className="text-xl font-bold text-foreground">3/25</p>
+                  <p className="text-xs text-muted-foreground mt-1">Assets tracked</p>
                 </div>
               </Card>
             </div>
 
-            <div className="mb-6 sm:mb-8">
-              <ProjectedIncomeChart />
-            </div>
+            {/* Chart Section */}
+            <ProjectedIncomeChart />
 
+            {/* Holdings Table */}
             <PortfolioHoldingsTable holdings={demoHoldings} onHoldingUpdate={handleHoldingUpdate} portfolioId="demo" />
           </div>
 
-          <div className="hidden lg:block lg:col-span-3">
-            <div className="space-y-6">
-              {/* Quick Actions */}
-              <Card className="p-6 bg-white border border-slate-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
-                <div className="space-y-3">
-                  <Button className="w-full justify-start gap-3 bg-slate-900 hover:bg-slate-800">
-                    <Plus className="h-4 w-4" />
-                    Add Asset
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start gap-3 bg-transparent">
-                    <Sparkles className="h-4 w-4" />
-                    AI Analysis
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start gap-3 bg-transparent">
-                    <ArrowUpRight className="h-4 w-4" />
-                    Export Report
-                  </Button>
-                </div>
-              </Card>
+          {/* Sidebar */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Quick Actions */}
+            <Card className="p-6 bg-card border-border shadow-sm">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Quick Actions</h3>
+              <div className="space-y-3">
+                <Button className="w-full justify-start gap-3 bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Plus className="h-4 w-4" />
+                  Add Asset
+                </Button>
+                <Button variant="outline" className="w-full justify-start gap-3 bg-card border-border">
+                  <Sparkles className="h-4 w-4" />
+                  AI Analysis
+                </Button>
+                <Button variant="outline" className="w-full justify-start gap-3 bg-card border-border">
+                  <ArrowUpRight className="h-4 w-4" />
+                  Export Report
+                </Button>
+              </div>
+            </Card>
 
-              {/* Market Overview */}
-              <Card className="p-6 bg-white border border-slate-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Market Overview</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">S&P 500</span>
-                    <div className="text-right">
-                      <div className="text-sm font-medium">4,567.23</div>
-                      <div className="text-xs text-green-600">+0.85%</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Dividend Aristocrats</span>
-                    <div className="text-right">
-                      <div className="text-sm font-medium">2,134.56</div>
-                      <div className="text-xs text-green-600">+1.23%</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">10Y Treasury</span>
-                    <div className="text-right">
-                      <div className="text-sm font-medium">4.52%</div>
-                      <div className="text-xs text-red-600">+0.03%</div>
-                    </div>
+            {/* Market Overview */}
+            <Card className="p-6 bg-card border-border shadow-sm">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Market Overview</h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">S&P 500</span>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">4,567.23</div>
+                    <div className="text-xs text-green-600">+0.85%</div>
                   </div>
                 </div>
-              </Card>
-
-              {/* Top Performers */}
-              <Card className="p-6 bg-white border border-slate-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Top Dividend Performers</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="h-6 w-6 bg-blue-100 rounded text-xs font-semibold flex items-center justify-center text-blue-700">
-                        KO
-                      </div>
-                      <span className="text-sm font-medium">Coca-Cola</span>
-                    </div>
-                    <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs">
-                      3.1%
-                    </Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="h-6 w-6 bg-purple-100 rounded text-xs font-semibold flex items-center justify-center text-purple-700">
-                        JNJ
-                      </div>
-                      <span className="text-sm font-medium">Johnson & Johnson</span>
-                    </div>
-                    <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs">
-                      2.9%
-                    </Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="h-6 w-6 bg-red-100 rounded text-xs font-semibold flex items-center justify-center text-red-700">
-                        PG
-                      </div>
-                      <span className="text-sm font-medium">Procter & Gamble</span>
-                    </div>
-                    <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs">
-                      2.4%
-                    </Badge>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Dividend Aristocrats</span>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">2,134.56</div>
+                    <div className="text-xs text-green-600">+1.23%</div>
                   </div>
                 </div>
-              </Card>
-
-              {/* Upcoming Dividends */}
-              <Card className="p-6 bg-white border border-slate-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Upcoming Ex-Dividend Dates</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-medium">AAPL</div>
-                      <div className="text-xs text-slate-500">Dec 15, 2024</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-medium">$0.24</div>
-                      <div className="text-xs text-slate-500">per share</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-medium">MSFT</div>
-                      <div className="text-xs text-slate-500">Dec 18, 2024</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-medium">$0.75</div>
-                      <div className="text-xs text-slate-500">per share</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-medium">JNJ</div>
-                      <div className="text-xs text-slate-500">Dec 22, 2024</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-medium">$1.19</div>
-                      <div className="text-xs text-slate-500">per share</div>
-                    </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">10Y Treasury</span>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">4.52%</div>
+                    <div className="text-xs text-red-600">+0.03%</div>
                   </div>
                 </div>
-              </Card>
+              </div>
+            </Card>
 
-              {/* News Feed */}
-              <NewsFeed portfolioSymbols={portfolioSymbols} />
-            </div>
+            {/* Top Performers */}
+            <Card className="p-6 bg-card border-border shadow-sm">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Top Dividend Performers</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="h-6 w-6 bg-blue-100 rounded text-xs font-semibold flex items-center justify-center text-blue-700">
+                      KO
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Coca-Cola</span>
+                  </div>
+                  <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs">
+                    3.1%
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="h-6 w-6 bg-purple-100 rounded text-xs font-semibold flex items-center justify-center text-purple-700">
+                      JNJ
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Johnson & Johnson</span>
+                  </div>
+                  <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs">
+                    2.9%
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="h-6 w-6 bg-red-100 rounded text-xs font-semibold flex items-center justify-center text-red-700">
+                      PG
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Procter & Gamble</span>
+                  </div>
+                  <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs">
+                    2.4%
+                  </Badge>
+                </div>
+              </div>
+            </Card>
+
+            {/* Upcoming Dividends */}
+            <Card className="p-6 bg-card border-border shadow-sm">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Upcoming Ex-Dividend Dates</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm font-medium text-foreground">AAPL</div>
+                    <div className="text-xs text-muted-foreground">Dec 15, 2024</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">$0.24</div>
+                    <div className="text-xs text-muted-foreground">per share</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm font-medium text-foreground">MSFT</div>
+                    <div className="text-xs text-muted-foreground">Dec 18, 2024</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">$0.75</div>
+                    <div className="text-xs text-muted-foreground">per share</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm font-medium text-foreground">JNJ</div>
+                    <div className="text-xs text-muted-foreground">Dec 22, 2024</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">$1.19</div>
+                    <div className="text-xs text-muted-foreground">per share</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* News Feed */}
+            <NewsFeed portfolioSymbols={portfolioSymbols} />
           </div>
         </div>
       </div>
