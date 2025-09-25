@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Crown, Search, Bell, User, Menu, Sun, Moon, Settings, LogOut } from "lucide-react"
+import { Crown, Bell, User, Menu, LogOut } from "lucide-react"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter, usePathname } from "next/navigation"
@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button"
 export default function Navigation() {
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
-  const [darkMode, setDarkMode] = useState(false)
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const supabase = createClient()
@@ -70,16 +69,6 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Search Icon */}
-            <button className="p-2 hover:bg-gray-100 rounded-lg">
-              <Search className="w-5 h-5" />
-            </button>
-
-            {/* Theme Toggle */}
-            <button onClick={() => setDarkMode(!darkMode)} className="p-2 hover:bg-gray-100 rounded-lg">
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-
             {!loading && (
               <>
                 {user ? (
@@ -114,7 +103,8 @@ export default function Navigation() {
                             href="/dashboard/settings"
                             className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                           >
-                            <Settings className="w-4 h-4" />
+                            {/* Settings Icon */}
+                            <span className="w-4 h-4"></span>
                             Settings
                           </Link>
                           <hr className="my-1" />

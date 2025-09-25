@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Crown, Search, User, Settings, LogOut, Moon, Sun, Bell, Menu } from "lucide-react"
+import { Crown, Search, User, Settings, LogOut, Bell, Menu } from "lucide-react"
 
 interface Profile {
   email: string
@@ -32,7 +32,6 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
   const pathname = usePathname()
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState("")
-  const [darkMode, setDarkMode] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const supabase = createClient()
@@ -100,16 +99,6 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-
-            {/* Dark Mode Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setDarkMode(!darkMode)}
-              className="h-9 w-9 p-0 hover:bg-slate-100"
-            >
-              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
 
             {/* Trial Badge */}
             <Badge className="bg-amber-100 text-amber-800 border-amber-200 px-3 py-1 text-xs font-medium">
@@ -192,14 +181,6 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
 
                   {/* Mobile Actions */}
                   <div className="border-t pt-4 space-y-2">
-                    <Button
-                      variant="ghost"
-                      onClick={() => setDarkMode(!darkMode)}
-                      className="w-full justify-start gap-3"
-                    >
-                      {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                      {darkMode ? "Light Mode" : "Dark Mode"}
-                    </Button>
                     <Button variant="ghost" className="w-full justify-start gap-3">
                       <Bell className="h-4 w-4" />
                       Notifications
