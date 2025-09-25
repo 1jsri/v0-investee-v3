@@ -121,24 +121,27 @@ export default function Navigation() {
                   </>
                 ) : (
                   <>
-                    {/* Login and Signup buttons for unauthenticated users */}
-                    <Link href="/login">
-                      <Button variant="ghost" size="sm">
-                        Log In
-                      </Button>
-                    </Link>
-                    <Link href="/signup">
-                      <Button size="sm" className="bg-slate-900 hover:bg-slate-800">
-                        Sign Up
-                      </Button>
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      <Link href="/login">
+                        <Button variant="ghost" size="sm" className="h-9 px-4 font-medium">
+                          Log In
+                        </Button>
+                      </Link>
+                      <Link href="/signup">
+                        <Button size="sm" className="h-9 px-4 bg-slate-900 hover:bg-slate-800 font-medium">
+                          Sign Up
+                        </Button>
+                      </Link>
+                    </div>
                   </>
                 )}
               </>
             )}
 
-            {/* Hamburger Menu */}
-            <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="p-2 hover:bg-gray-100 rounded-lg">
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              className="p-2 hover:bg-gray-100 rounded-lg h-9 w-9 flex items-center justify-center"
+            >
               <Menu className="w-5 h-5" />
             </button>
           </div>

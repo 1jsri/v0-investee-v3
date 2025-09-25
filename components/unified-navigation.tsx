@@ -6,7 +6,6 @@ import { usePathname, useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
   DropdownMenu,
@@ -15,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Crown, Search, User, Settings, LogOut, Bell, Menu } from "lucide-react"
+import { Crown, User, Settings, LogOut, Bell, Menu } from "lucide-react"
 
 interface Profile {
   email: string
@@ -31,7 +30,6 @@ interface UnifiedNavigationProps {
 export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
   const pathname = usePathname()
   const router = useRouter()
-  const [searchQuery, setSearchQuery] = useState("")
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const supabase = createClient()
@@ -86,20 +84,8 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
             ))}
           </nav>
 
-          {/* Right: Search, Actions, User Menu */}
+          {/* Right: Actions and User Menu */}
           <div className="flex items-center gap-3">
-            {/* Search Bar */}
-            <div className="hidden md:block relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <Input
-                type="search"
-                placeholder="Search assets..."
-                className="pl-10 w-64 h-9 bg-slate-50 border-slate-200 focus:bg-white"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-
             {/* Trial Badge */}
             <Badge className="bg-amber-100 text-amber-800 border-amber-200 px-3 py-1 text-xs font-medium">
               Casual Trial: {trialDaysLeft}d left
@@ -147,20 +133,6 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
               </SheetTrigger>
               <SheetContent side="right" className="w-80">
                 <div className="flex flex-col space-y-4 mt-4">
-                  {/* Mobile Search */}
-                  <div className="px-2">
-                    <div className="relative">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-                      <Input
-                        type="search"
-                        placeholder="Search assets..."
-                        className="pl-10 w-full"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                    </div>
-                  </div>
-
                   {/* Mobile Navigation */}
                   <nav className="flex flex-col space-y-2">
                     {navigationItems.map((item) => (

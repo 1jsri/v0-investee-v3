@@ -316,7 +316,7 @@ export function AssetSearch({
         <Card
           ref={resultsRef}
           className={cn(
-            "absolute top-full left-0 right-0 z-[60] max-h-96 overflow-y-auto shadow-xl border-2 border-primary/20",
+            "absolute top-full left-0 right-0 z-[100] max-h-96 overflow-y-auto shadow-xl border-2 border-primary/20",
             dataSource === "yahoo" ? "mt-16" : "mt-1",
           )}
           role="listbox"
