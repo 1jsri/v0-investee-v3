@@ -229,7 +229,7 @@ export function PricingSection() {
                       : "bg-white text-black border-2 border-black hover:bg-black hover:text-white"
                   } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  {isLoading ? "Processing..." : plan.name === "Free" ? plan.cta : "Start Free"}
+                  {isLoading ? "Processing..." : plan.cta}
                 </Button>
 
                 {plan.name === "Free" && (

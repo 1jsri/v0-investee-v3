@@ -155,7 +155,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className="bg-black text-white hover:bg-gray-800 text-lg sm:text-xl px-8 sm:px-10 py-6 sm:py-8 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-                onClick={() => router.push("/auth/signin")}
+                onClick={() => router.push("/signup")}
               >
                 <Play className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
                 Start Learning Free

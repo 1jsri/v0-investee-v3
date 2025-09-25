@@ -25,6 +25,50 @@
     --input: 226 232 240; /* slate-200 */
     --ring: 15 23 42; /* slate-900 */
     --radius: 0.5rem;
+
+    /* Added consistent success colors for financial gains */
+    --success: 5 150 105; /* emerald-600 - for positive financial data */
+    --success-foreground: 255 255 255; /* white */
+    --success-muted: 209 250 229; /* emerald-50 - for success backgrounds */
+  }
+}
+
+/* Added professional typography scale utilities */
+@layer utilities {
+  .text-display {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight;
+  }
+
+  .text-heading-1 {
+    @apply text-3xl sm:text-4xl font-bold leading-tight;
+  }
+
+  .text-heading-2 {
+    @apply text-2xl sm:text-3xl font-bold leading-tight;
+  }
+
+  .text-heading-3 {
+    @apply text-xl sm:text-2xl font-semibold leading-tight;
+  }
+
+  .text-heading-4 {
+    @apply text-lg sm:text-xl font-semibold leading-snug;
+  }
+
+  .text-body-large {
+    @apply text-lg sm:text-xl leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+
+  .text-body-small {
+    @apply text-sm leading-relaxed;
+  }
+
+  .text-caption {
+    @apply text-xs leading-normal;
   }
 }
 

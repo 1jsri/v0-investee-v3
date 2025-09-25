@@ -166,18 +166,19 @@ export function PortfolioHoldingsTable({ holdings, onHoldingUpdate, portfolioId 
               <TableCell className="text-right">${holding.currentPrice.toFixed(2)}</TableCell>
               <TableCell className="text-right font-medium">${holding.marketValue.toLocaleString()}</TableCell>
               <TableCell className="text-right">
-                <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50">
+                <Badge variant="outline" className="text-slate-700 border-slate-300 bg-slate-50">
                   {holding.dividendYield.toFixed(2)}%
                 </Badge>
               </TableCell>
-              <TableCell className="text-right font-medium text-green-600">
+              <TableCell className="text-right font-medium text-slate-900">
                 ${holding.annualIncome.toFixed(2)}
               </TableCell>
               <TableCell className="text-right">{holding.portfolioPercent.toFixed(1)}%</TableCell>
               <TableCell className="text-right">
                 <div
                   className={`flex items-center justify-end gap-1 ${
-                    holding.dayChange >= 0 ? "text-green-600" : "text-red-600"
+                    /* Updated colors to use consistent red/green for gains/losses */
+                    holding.dayChange >= 0 ? "text-emerald-600" : "text-red-600"
                   }`}
                 >
                   {holding.dayChange >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
