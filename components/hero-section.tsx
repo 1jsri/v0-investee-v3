@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
-import { Calculator, AlertTriangle, Play, TrendingUp } from "lucide-react"
+import { Calculator, TriangleAlert as AlertTriangle, Play, TrendingUp } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AssetSearch } from "@/components/asset-search"
@@ -219,7 +219,7 @@ export function HeroSection() {
                   </div>
 
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 p-6 sm:p-8 rounded-xl space-y-4 sm:space-y-6">
-                    <h4 className="text-base sm:text-lg font-bold text-slate-900 text-center">
+                    <h4 className="text-base sm:text-lg font-bold text-black text-center">
                       💰 Your Potential Monthly Income
                     </h4>
                     {isLoading ? (

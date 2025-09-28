@@ -8,19 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import {
-  Search,
-  TrendingUp,
-  TrendingDown,
-  Building2,
-  Coins,
-  X,
-  Check,
-  AlertCircle,
-  Plus,
-  BarChart3,
-  Users,
-} from "lucide-react"
+import { Search, TrendingUp, TrendingDown, Building2, Coins, X, Check, CircleAlert as AlertCircle, Plus, ChartBar as BarChart3, Users } from "lucide-react"
 import type { Asset } from "@/types/asset"
 import { cn } from "@/lib/utils"
 
