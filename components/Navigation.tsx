@@ -123,12 +123,12 @@ export default function Navigation() {
                   <>
                     <div className="flex items-center gap-2">
                       <Link href="/login">
-                        <Button variant="ghost" size="sm" className="h-9 px-4 font-medium">
+                        <Button variant="outline" size="sm" className="h-9 px-4 font-medium border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white bg-transparent transition-all duration-200">
                           Log In
                         </Button>
                       </Link>
                       <Link href="/signup">
-                        <Button size="sm" className="h-9 px-4 bg-slate-900 hover:bg-slate-800 font-medium">
+                        <Button size="sm" className="h-9 px-4 bg-slate-900 hover:bg-slate-800 text-white font-medium transition-all duration-200">
                           Sign Up
                         </Button>
                       </Link>

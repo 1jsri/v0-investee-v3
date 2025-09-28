@@ -247,7 +247,7 @@ export function PricingSection() {
           <p className="text-base text-gray-600 mb-4">Questions about our plans? We're here to help you get started.</p>
           <Button
             variant="outline"
-            className="border-2 border-black text-black hover:bg-black hover:text-white bg-transparent px-6 py-2 text-base font-medium transition-all duration-300"
+            className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white bg-transparent px-6 py-3 text-base font-medium transition-all duration-200 rounded-md"
           >
             Contact Support
           </Button>

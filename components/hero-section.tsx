@@ -188,7 +188,7 @@ export function HeroSection() {
                 <div className="space-y-6 sm:space-y-8">
                   <div className="space-y-4 sm:space-y-6">
                     <div className="flex justify-between items-center">
-                      <label className="text-base sm:text-lg font-semibold text-black">How much to invest?</label>
+                      <label className="text-base sm:text-lg font-semibold text-slate-900">How much to invest?</label>
                       <div className="text-2xl sm:text-3xl font-bold text-black">
                         {formatCurrency(investmentAmount)}
                       </div>
@@ -208,18 +208,18 @@ export function HeroSection() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="text-base sm:text-lg font-semibold text-black">Pick a dividend stock</label>
+                    <label className="text-base sm:text-lg font-semibold text-slate-900">Pick a dividend stock</label>
                     <AssetSearch
                       onAssetSelect={handleAssetSelect}
                       selectedAssets={selectedAssets}
                       onAssetRemove={handleAssetRemove}
                       placeholder="Try AAPL, KO, JNJ, or SCHD..."
-                      className="text-base sm:text-lg h-14 sm:h-16 border-2 border-gray-300 focus:border-black rounded-xl"
+                      className="text-base sm:text-lg h-14 sm:h-16 border-2 border-gray-300 focus:border-slate-900 rounded-xl"
                     />
                   </div>
 
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 p-6 sm:p-8 rounded-xl space-y-4 sm:space-y-6">
-                    <h4 className="text-base sm:text-lg font-bold text-black text-center">
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 text-center">
                       💰 Your Potential Monthly Income
                     </h4>
                     {isLoading ? (
