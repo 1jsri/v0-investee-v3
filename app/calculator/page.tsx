@@ -88,17 +88,16 @@ export default function CalculatorPage() {
   }, [numericAmount, selectedAssets, calculateDividends])
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-2">Dividend Calculator</h1>
-        <p className="text-slate-600">Calculate your potential dividend income with real-time market data</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Dividend Calculator</h1>
+        <p className="text-muted-foreground">Calculate your potential dividend income with real-time market data</p>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-12">
+      <div className="grid gap-8 lg:grid-cols-5">
         {/* Input Section */}
-        <div className="lg:col-span-4">
-          <Card className="bg-white border border-slate-200 shadow-sm">
+        <div className="lg:col-span-2">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calculator className="h-5 w-5" />
@@ -107,25 +106,25 @@ export default function CalculatorPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-900">Investment Amount</label>
+                <label className="text-sm font-medium text-foreground">Investment Amount</label>
                 <Input
                   type="text"
                   placeholder="$10,000"
                   value={investmentAmount}
                   onChange={handleAmountChange}
-                  className="text-lg h-12 border-slate-300 focus:border-slate-900"
+                  className="text-lg h-12"
                 />
-                <p className="text-xs text-slate-500">Enter the total amount you want to invest</p>
+                <p className="text-xs text-muted-foreground">Enter the total amount you want to invest</p>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-900">Search Assets</label>
+                <label className="text-sm font-medium text-foreground">Search Assets</label>
                 <AssetSearch
                   onAssetSelect={handleAssetSelect}
                   selectedAssets={selectedAssets}
                   placeholder="Search stocks, ETFs, funds..."
                 />
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   Add multiple assets to diversify your dividend portfolio
                 </p>
               </div>
@@ -133,19 +132,19 @@ export default function CalculatorPage() {
               {/* Selected Assets */}
               {selectedAssets.length > 0 && (
                 <div className="space-y-3">
-                  <label className="text-sm font-medium text-slate-900">Selected Assets</label>
+                  <label className="text-sm font-medium text-foreground">Selected Assets</label>
                   <div className="space-y-2">
                     {selectedAssets.map((asset) => (
-                      <div key={asset.symbol} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+                      <div key={asset.symbol} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                         <div>
-                          <div className="font-medium text-slate-900">{asset.displaySymbol}</div>
-                          <div className="text-sm text-slate-600 truncate max-w-48">{asset.description}</div>
+                          <div className="font-medium text-foreground">{asset.displaySymbol}</div>
+                          <div className="text-sm text-muted-foreground truncate max-w-48">{asset.description}</div>
                         </div>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => removeAsset(asset.symbol)}
-                          className="text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+                          className="text-muted-foreground hover:text-destructive"
                         >
                           <X className="h-4 w-4" />
                         </Button>
@@ -156,7 +155,7 @@ export default function CalculatorPage() {
               )}
 
               {numericAmount > 0 && selectedAssets.length > 0 && (
-                <Button onClick={handleCalculate} className="w-full btn-primary h-12" disabled={isLoading}>
+                <Button onClick={handleCalculate} className="w-full" size="lg" disabled={isLoading}>
                   {isLoading ? (
                     <>
                       <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
@@ -175,7 +174,7 @@ export default function CalculatorPage() {
         </div>
 
         {/* Results Section */}
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-3">
           <DividendResults
             calculations={calculations}
             totalAnnualDividend={totalAnnualDividend}
@@ -186,7 +185,6 @@ export default function CalculatorPage() {
             error={error}
           />
         </div>
-      </div>
       </div>
     </div>
   )

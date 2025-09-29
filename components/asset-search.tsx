@@ -304,21 +304,21 @@ export function AssetSearch({
         <Card
           ref={resultsRef}
           className={cn(
-            "absolute top-full left-0 right-0 z-dropdown max-h-96 overflow-y-auto shadow-2xl border-2 border-slate-200 bg-white rounded-xl",
+            "absolute top-full left-0 right-0 z-[9999] max-h-96 overflow-y-auto shadow-xl border-2 border-primary/20 bg-white",
             dataSource === "yahoo" ? "mt-16" : "mt-1",
           )}
           role="listbox"
           aria-label="Asset search results"
         >
           {error ? (
-            <div className="p-6 text-center text-red-600">
+            <div className="p-4 text-center text-destructive">
               <p>{error}</p>
-              <Button variant="outline" size="sm" className="mt-3" onClick={() => searchAssets(query)}>
+              <Button variant="outline" size="sm" className="mt-2 bg-transparent" onClick={() => searchAssets(query)}>
                 Try Again
               </Button>
             </div>
           ) : results.length === 0 ? (
-            <div className="p-6 text-center text-slate-500">
+            <div className="p-6 text-center text-muted-foreground">
               <Search className="h-8 w-8 mx-auto mb-2 opacity-50" />
               <p>No assets found for "{query}"</p>
               <p className="text-sm mt-1">Try searching for dividend stocks like AAPL, MSFT, or SCHD</p>
@@ -334,11 +334,10 @@ export function AssetSearch({
                   <div
                     key={`${asset.symbol}-${asset.exchange}`}
                     className={cn(
-                      "px-4 py-4 hover:bg-slate-50 focus:bg-slate-100 transition-colors border-b border-slate-100 last:border-b-0 cursor-pointer",
-                      isSelected && "bg-slate-50",
-                      isAlreadySelected && "opacity-50",
+                      "px-4 py-4 hover:bg-muted/50 focus:bg-muted/50 transition-colors border-b border-slate-100 last:border-b-0",
+                      isSelected && "bg-primary/10",
+                      isAlreadySelected && "opacity-60",
                     )}
-                    onClick={() => handleAssetSelect(asset)}
                   >
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -367,7 +366,7 @@ export function AssetSearch({
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="font-bold text-slate-900 text-lg">{asset.displaySymbol}</span>
-                            <Badge variant="outline" className={cn("text-xs", getAssetTypeColor(asset.type))}>
+                            <Badge variant="secondary" className={cn("text-xs", getAssetTypeColor(asset.type))}>
                               {asset.type}
                             </Badge>
                             {asset.dividendYield && asset.dividendYield > 0 && (
@@ -380,7 +379,7 @@ export function AssetSearch({
                           <div className="flex items-center gap-4 mt-1 text-xs text-slate-500">
                             {asset.exchange && <span>{asset.exchange}</span>}
                             {asset.sector && <span>• {asset.sector}</span>}
-                            {asset.marketCap && <span>• {formatNumber(asset.marketCap, "$")} cap</span>}
+                            {asset.marketCap && <span>• {formatNumber(asset.marketCap)} cap</span>}
                           </div>
                         </div>
                       </div>
@@ -409,7 +408,7 @@ export function AssetSearch({
                               variant={isInBatch ? "default" : "outline"}
                               size="sm"
                               onClick={() => (isInBatch ? removeFromBatch(asset.symbol) : addToBatch(asset))}
-                              className="h-8 px-3 text-xs"
+                              className="h-8 px-3"
                             >
                               {isInBatch ? <Check className="h-3 w-3" /> : <Plus className="h-3 w-3" />}
                             </Button>
@@ -418,12 +417,9 @@ export function AssetSearch({
                           <Button
                             variant="outline"
                             size="sm"
+                            onClick={() => handleAssetSelect(asset)}
                             disabled={isAlreadySelected}
-                            className="h-8 px-3 text-xs"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              handleAssetSelect(asset)
-                            }}
+                            className="h-8 px-3"
                           >
                             {isAlreadySelected ? <Check className="h-3 w-3" /> : <Plus className="h-3 w-3" />}
                           </Button>

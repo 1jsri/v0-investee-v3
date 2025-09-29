@@ -54,16 +54,16 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
     : 0
 
   return (
-    <nav className="sticky top-0 z-nav w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm shadow-sm">
+    <nav className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <div className="h-9 w-9 bg-slate-900 rounded-lg flex items-center justify-center shadow-sm">
+              <div className="h-8 w-8 bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg flex items-center justify-center">
                 <Crown className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-slate-900 hover:text-slate-700 transition-colors">Investee</span>
+              <span className="text-xl font-bold text-slate-900">Investee</span>
             </Link>
           </div>
 
@@ -75,7 +75,7 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
                 href={item.href}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   pathname === item.href
-                    ? "bg-slate-100 text-slate-900 shadow-sm"
+                    ? "bg-slate-100 text-slate-900"
                     : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                 }`}
               >
@@ -87,14 +87,14 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
           {/* Right: Actions and User Menu */}
           <div className="flex items-center gap-3">
             {/* Trial Badge */}
-            <Badge className="hidden sm:flex bg-amber-100 text-amber-800 border-amber-200 px-3 py-1 text-xs font-medium">
+            <Badge className="bg-amber-100 text-amber-800 border-amber-200 px-3 py-1 text-xs font-medium">
               Casual Trial: {trialDaysLeft}d left
             </Badge>
 
             {/* Notifications */}
-            <Button variant="ghost" size="sm" className="hidden sm:flex h-10 w-10 p-0 hover:bg-slate-100 relative transition-colors rounded-lg">
+            <Button variant="ghost" size="sm" className="h-9 w-9 p-0 hover:bg-slate-100 relative">
               <Bell className="h-4 w-4" />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
             </Button>
 
             {/* User Profile Dropdown */}
@@ -104,11 +104,12 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
                   <User className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 shadow-xl border-slate-200 bg-white">
-                <div className="px-3 py-2 border-b border-slate-100">
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-1.5">
                   <p className="text-sm font-medium text-slate-900">{user.email.split("@")[0]}</p>
                   <p className="text-xs text-slate-500">{user.email}</p>
                 </div>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard/settings" className="flex items-center gap-2">
                     <Settings className="h-4 w-4" />
@@ -116,7 +117,7 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut} className="hover:bg-slate-50 transition-colors px-3 py-2">
+                <DropdownMenuItem onClick={handleSignOut} className="text-red-600">
                   <LogOut className="h-4 w-4 mr-2" />
                   Sign Out
                 </DropdownMenuItem>
@@ -130,61 +131,35 @@ export function UnifiedNavigation({ user, profile }: UnifiedNavigationProps) {
                   <Menu className="h-4 w-4" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-80 bg-white text-slate-900 border-l border-slate-200">
-                <div className="flex flex-col h-full pt-6">
-                  <div className="flex items-center gap-3 mb-8 p-4 bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl text-white">
-                    <div className="h-10 w-10 bg-white/20 rounded-lg flex items-center justify-center">
-                      <Crown className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-white">Investee</div>
-                      <div className="text-xs text-slate-300">{user?.email}</div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 flex-1">
-                    <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-slate-900">
-                      <div className="text-sm font-medium text-amber-800">Casual Trial: {trialDaysLeft}d left</div>
-                    </div>
-                    
+              <SheetContent side="right" className="w-80">
+                <div className="flex flex-col space-y-4 mt-4">
+                  {/* Mobile Navigation */}
+                  <nav className="flex flex-col space-y-2">
                     {navigationItems.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
                         onClick={() => setShowMobileMenu(false)}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
-                          pathname === item.href 
-                            ? "bg-slate-100 text-slate-900 shadow-sm font-medium" 
-                            : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                          pathname === item.href
+                            ? "bg-slate-100 text-slate-900"
+                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                         }`}
                       >
-                        <span className="font-medium text-slate-900">{item.name}</span>
+                        {item.name}
                       </Link>
                     ))}
-
-                    <div className="border-t border-slate-200 pt-4 space-y-2">
-                      <Button
-                        variant="ghost"
-                        className="w-full justify-start gap-3 hover:bg-slate-50 transition-colors text-slate-700 hover:text-slate-900"
-                        asChild
-                      >
-                        <Link href="/dashboard/settings" onClick={() => setShowMobileMenu(false)}>
-                          <Settings className="h-4 w-4" />
-                          <span className="text-slate-900">Settings</span>
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
+                  </nav>
 
                   {/* Mobile Actions */}
                   <div className="border-t pt-4 space-y-2">
-                    <Button 
-                      variant="ghost"
-                      onClick={handleSignOut}
-                      className="w-full justify-start gap-3 hover:bg-red-50 text-red-600 hover:text-red-700 transition-colors bg-transparent"
-                    >
+                    <Button variant="ghost" className="w-full justify-start gap-3">
+                      <Bell className="h-4 w-4" />
+                      Notifications
+                    </Button>
+                    <Button variant="ghost" onClick={handleSignOut} className="w-full justify-start gap-3 text-red-600">
                       <LogOut className="h-4 w-4" />
-                      <span className="text-red-600">Sign Out</span>
+                      Sign Out
                     </Button>
                   </div>
                 </div>

@@ -158,27 +158,27 @@ export function ProjectedIncomeChart() {
             </p>
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
-            <div className="flex gap-1 bg-slate-100 rounded-lg p-1 overflow-x-auto">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
               {timeRanges.map((range) => (
                 <Button
                   key={range}
                   variant={timeRange === range ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setTimeRange(range)}
-                  className={`h-8 px-3 text-xs ${chartType === type ? "bg-white shadow-sm text-slate-900" : "hover:bg-slate-200 text-slate-600"}`}
+                  className={`h-8 px-3 text-xs ${timeRange === range ? "bg-white shadow-sm" : "hover:bg-slate-200"}`}
                 >
                   {range}
                 </Button>
               ))}
             </div>
 
-            <div className="flex items-center gap-4 ml-auto">
+            <div className="flex items-center gap-1">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setIsRealTime(!isRealTime)}
-                className="h-8 w-8 p-0"
+                className={`gap-2 ${isRealTime ? "bg-green-50 border-green-200 text-green-700" : ""}`}
               >
                 {isRealTime ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                 {isRealTime ? "Live" : "Static"}
@@ -191,43 +191,15 @@ export function ProjectedIncomeChart() {
               <Button variant="outline" size="sm" onClick={() => setShowSettings(true)}>
                 <Settings className="h-4 w-4" />
               </Button>
-                className="h-8 w-8 p-0"
+
               <Button variant="outline" size="sm" onClick={downloadChart}>
                 <Download className="h-4 w-4" />
               </Button>
-                className="h-8 w-8 p-0"
+
               <Button variant="outline" size="sm" onClick={() => setShowFullscreen(true)}>
                 <Maximize2 className="h-4 w-4" />
               </Button>
             </div>
-          </div>
-        </div>
-        
-        {/* Mobile Controls */}
-        <div className="lg:hidden mb-6 space-y-4">
-          <div className="flex gap-1 bg-slate-100 rounded-lg p-1 overflow-x-auto">
-            {(Object.keys(timeViewConfig) as TimeView[]).map((view) => (
-              <Button
-                key={view}
-                variant={activeTimeView === view ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setActiveTimeView(view)}
-                className={`text-xs px-3 h-8 flex-shrink-0 ${activeTimeView === view ? "bg-white shadow-sm text-slate-900" : "hover:bg-slate-200 text-slate-600"}`}
-              >
-                {timeViewConfig[view].label}
-              </Button>
-            ))}
-          </div>
-          
-          <div className="flex gap-2 justify-center">
-            <Button variant="outline" size="sm" onClick={() => setShowSettings(true)} className="px-3">
-              <Settings className="h-4 w-4 mr-1" />
-              Settings
-            </Button>
-            <Button variant="outline" size="sm" onClick={downloadChart} className="px-3">
-              <Download className="h-4 w-4 mr-1" />
-              Export
-            </Button>
           </div>
         </div>
 
