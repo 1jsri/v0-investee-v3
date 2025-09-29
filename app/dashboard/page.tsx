@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { DollarSign, TrendingUp, ChartPie as PieChart, Target, Calendar, Plus, ArrowUpRight, Sparkles } from "lucide-react"
+import { DollarSign, TrendingUp, PieChart, Target, Calendar, Plus, ArrowUpRight, Sparkles } from "lucide-react"
 import { ProjectedIncomeChart } from "@/components/projected-income-chart"
 import { PortfolioHoldingsTable } from "@/components/portfolio-holdings-table"
 import { NewsFeed } from "@/components/news-feed"
@@ -145,6 +145,25 @@ export default function DashboardOverview() {
                   </p>
                   <p className="text-2xl font-bold text-slate-900">Good</p>
                   <p className="text-xs text-slate-500 mt-1">3 sectors covered</p>
+                </div>
+              </Card>
+
+              <Card className="p-4 bg-card border-border shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="h-10 w-10 bg-muted-foreground rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <Target className="h-5 w-5 text-white" />
+                  </div>
+                  <Badge
+                    variant="outline"
+                    className="text-muted-foreground border-border bg-secondary font-medium text-xs capitalize"
+                  >
+                    casual
+                  </Badge>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Plan Usage</p>
+                  <p className="text-xl font-bold text-foreground">3/25</p>
+                  <p className="text-xs text-muted-foreground mt-1">Assets tracked</p>
                 </div>
               </Card>
             </div>
