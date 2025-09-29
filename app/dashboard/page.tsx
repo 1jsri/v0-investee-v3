@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { DollarSign, TrendingUp, PieChart, Target, Calendar, Plus, ArrowUpRight, Sparkles } from "lucide-react"
+import { DollarSign, TrendingUp, ChartPie as PieChart, Target, Calendar, Plus, ArrowUpRight, Sparkles } from "lucide-react"
 import { ProjectedIncomeChart } from "@/components/projected-income-chart"
 import { PortfolioHoldingsTable } from "@/components/portfolio-holdings-table"
 import { NewsFeed } from "@/components/news-feed"
@@ -288,13 +288,6 @@ export default function DashboardOverview() {
 
             {/* News Feed */}
             <NewsFeed portfolioSymbols={portfolioSymbols} />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
           </div>
         </div>
       </div>
