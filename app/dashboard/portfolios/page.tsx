@@ -8,20 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
-import {
-  Plus,
-  Edit3,
-  Trash2,
-  PieChart,
-  DollarSign,
-  Calendar,
-  Eye,
-  Copy,
-  BarChart3,
-  Target,
-  Search,
-  X,
-} from "lucide-react"
+import { Plus, CreditCard as Edit3, Trash2, ChartPie as PieChart, DollarSign, Calendar, Eye, Copy, ChartBar as BarChart3, Target, Search, X } from "lucide-react"
 
 interface Portfolio {
   id: string
