@@ -3,29 +3,46 @@
  @tailwind utilities;
 
 @layer base {
-  /* Ensure proper overlay and modal styling */
   body {
     @apply bg-background text-foreground;
   }
   
-  /* Fix modal overlays */
-  [data-overlay-container] {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-  }
-  
-  /* Ensure modals are always light themed */
-  [data-radix-dialog-overlay] {
+  /* Force light theme for all overlays and modals */
+  [data-radix-dialog-overlay],
+  [data-radix-dialog-overlay][data-state="open"],
+  .fixed.inset-0.z-modal {
     background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(2px) !important;
   }
   
-  [data-radix-dialog-content] {
+  [data-radix-dialog-content],
+  [data-radix-dialog-content] * {
     background-color: white !important;
     color: #1f2937 !important;
   }
   
-  /* Fix sheet overlays */
-  [data-radix-dialog-overlay][data-state="open"] {
-    background-color: rgba(0, 0, 0, 0.6) !important;
+  /* Force light theme for sheets/drawers */
+  [data-radix-dialog-content][data-side],
+  .fixed.z-modal.bg-white {
+    background-color: white !important;
+    color: #1f2937 !important;
+    border: 1px solid #e5e7eb !important;
+  }
+  
+  /* Ensure proper stacking */
+  .z-modal {
+    z-index: 9999 !important;
+  }
+  
+  .z-dropdown {
+    z-index: 8888 !important;
+  }
+  
+  /* Fix any dark theme overrides */
+  .dark [data-radix-dialog-content],
+  [data-theme="dark"] [data-radix-dialog-content] {
+    background-color: white !important;
+    color: #1f2937 !important;
   }
 }
 

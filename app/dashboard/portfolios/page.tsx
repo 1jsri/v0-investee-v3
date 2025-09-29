@@ -651,11 +651,11 @@ export default function PortfoliosPage() {
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
               Create your first dividend-focused portfolio to track income, analyze performance, and optimize your
               investments.
-            </p>
-            <Button
+                <Select value={portfolioStrategy} onValueChange={(value: any) => setPortfolioStrategy(value)}>
+                  <SelectTrigger className="mt-1 bg-white border-slate-300 text-slate-900">
               onClick={() => setIsCreateModalOpen(true)}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  <SelectContent className="bg-white border-slate-200 text-slate-900">
             >
               <Plus className="h-5 w-5 mr-2" />
               Create Your First Portfolio
@@ -670,7 +670,7 @@ export default function PortfoliosPage() {
                 <h2 className="text-2xl font-bold text-slate-900">Add Assets to {selectedPortfolio.name}</h2>
                 <button 
                   onClick={() => setShowAddAssets(false)}
-                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                  className="mt-1 bg-white border-slate-300 text-slate-900"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -680,14 +680,22 @@ export default function PortfoliosPage() {
                 <Input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="mt-1 bg-white border-slate-300 text-slate-900"
                   onKeyDown={(e) => e.key === "Enter" && searchAssets()}
                   placeholder="Search stocks, ETFs (e.g., AAPL, VTI)"
-                  className="flex-1 h-12"
-                />
+                  className="mt-1 bg-white border-slate-300 text-slate-900"
+                <Button 
+                  onClick={createPortfolio} 
+                  disabled={!portfolioName.trim()} 
+                  className="flex-1 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3 text-base font-semibold rounded-lg border-2 border-slate-900 transition-all duration-200 hover:shadow-lg"
+                >
                 <Button onClick={searchAssets} className="btn-primary h-12 px-6">
                   <Search className="w-4 h-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Search</span>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setIsCreateModalOpen(false)} 
+                  className="flex-1 sm:flex-none border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white bg-white px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200 hover:shadow-lg"
+                >
                   Search
                 </Button>
               </div>
