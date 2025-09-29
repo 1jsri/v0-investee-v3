@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { DollarSign, TrendingUp, PieChart, Target, Calendar, Plus, ArrowUpRight, Sparkles } from "lucide-react"
+import { DollarSign, TrendingUp, ChartPie as PieChart, Target, Calendar, Plus, ArrowUpRight, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Profile {

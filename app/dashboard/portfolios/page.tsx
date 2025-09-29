@@ -777,13 +777,13 @@ export default function PortfoliosPage() {
               </div>
 
               {limits.canChat ? (
-                <Button className="w-full btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600">
+                <Button className="w-full bg-purple-600 text-white hover:bg-purple-700 px-6 py-3 text-base font-semibold rounded-lg border-2 border-purple-600 transition-all duration-200 hover:shadow-lg">
                   Chat with Portfolio (Professional Feature)
                 </Button>
               ) : (
                 <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg text-center">
                   <p className="text-amber-800 font-medium">Upgrade to Professional to unlock AI Portfolio Chat</p>
-                  <Button variant="outline" size="sm" className="mt-2">
+                  <Button variant="outline" size="sm" className="mt-2 border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white bg-white px-4 py-2 text-sm font-medium rounded-md transition-all duration-200">
                     View Plans
                   </Button>
                 </div>
